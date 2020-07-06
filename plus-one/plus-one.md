@@ -1,4 +1,4 @@
-Solutions to LeetCode Problem Plus One ([#66](https://leetcode.com/problems/plus-one/))
+# Solutions to LeetCode Problem Plus One ([#66](https://leetcode.com/problems/plus-one/))
 
 Apparently if the last element of `digits` is less, than `9`, the solution is just the same list with the last element incremented by one, or `digits[:-1] + [digits[-1] + 1]`.
 
