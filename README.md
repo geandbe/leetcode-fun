@@ -1,7 +1,4 @@
-<center>
 # leetcode-fun
-</center>
-
 
 ### The Contents
 **leetcode-fun** is a collection of solutions to some of [LeetCode](https://leetcode.com/) problems
