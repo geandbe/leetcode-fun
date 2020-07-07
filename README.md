@@ -1,4 +1,6 @@
-<p align="center" # leetcode-fun />
+<p align="center">
+# leetcode-fun
+</p>
 
 
 ### The Contents
