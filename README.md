@@ -1,6 +1,6 @@
-<div style="text-align: center;">
+<center>
 # leetcode-fun
-</div>
+</center>
 
 
 ### The Contents
