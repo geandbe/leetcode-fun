@@ -1,4 +1,5 @@
-# leetcode-fun {style=text-align:center}
+<p align="center" # leetcode-fun />
+
 
 ### The Contents
 **leetcode-fun** is a collection of solutions to some of [LeetCode](https://leetcode.com/) problems
