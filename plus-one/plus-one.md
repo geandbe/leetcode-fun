@@ -1,8 +1,47 @@
 ## Solutions to LeetCode Problem **Plus One** ([#66](https://leetcode.com/problems/plus-one/))
 
-### Solution A: Pure function composition (well, the approach is cheating)
+### Solution A: Pure function composition (well, the approach is somewhat cheating)
+
+I believe it is somewhat cheating to solve the problem by heavy use of library functions for type conversion.
+Anyway, the algorithm would be:
+
+1. assemble given digits list into a number
+2. increment the number by 1
+3. disassemble result back into the list of digits
+
+The above may be trivially achieved by the composition of Python 3 library functions.
+
+Let's take, for example `digits = [1, 2, 3]`:
+* `map(str, digits)` converts it to the list of strings `['1', '2', '3']`
+* `''.join(map(str, digits))` further assembles it into the string `'123'`
+* `int(''.join(map(str, digits)))` wrap-ups step 1 by yielding number `123`
+
+Step 2 is just adding 1 to the above `int(''.join(map(str, digits))) + 1` that is, yielding `124`
+
+Step 3 is continuing composing functions:
+* `str(int(''.join(map(str, digits))) + 1)` converts the result number back string `'124'`
+* `map(int, str(int(''.join(map(str, digits))) + 1))` converts the above into iterable over `int` digits
+`map object (1, 2, 4)`
+* materializing the latter with  `list(map(int, str(int(''.join(map(str, digits))) + 1)))` yields `[1, 2, 4]`,
+mission accomplished!
+
+Assembling the above into complete problem solution:
+```
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        return list(map(int, str(int(''.join(map(str, digits))) + 1)))
+```
 
 ### Solution B: More pythonic variant of Solution A
+
+It does not change the approach, just offers a more _pythonic_ way of implementing of Step 3 by using a list
+comprehension for mapping characters of result string back into the list of `int` digits:
+`[int(digit) for digit in str(int(''.join(map(str, digits))) + 1)]`. The full solution is:
+```
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        return [int(digit) for digit in str(int(''.join(map(str, digits))) + 1)]
+```
 
 ### Solution C: Recursive function over mutating list
 
