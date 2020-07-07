@@ -45,6 +45,35 @@ class Solution:
 
 ### Solution C: Recursive function over mutating list
 
+Now turning to the non-cheating ways of solving the problem. Intuition prompts that if the rightmost element of the
+given `digits` list is less, than `9`, everything is simple: just increment this element by one and return
+the (mutated) `digits`. In case of this element is `9` its value should mutate to '0' and carry-on `1` should be added
+to the `digits` being shortened by one from right.
+But wait a minute, this is the exact equivalent of the original problem, just the data dimension has being shrink by
+one! This is where a recursive function as a solution may fit. The only question is: how the recursion stops? OK,
+if the recursive function over the positions of `digits` arrives at the leftmost element and the carry-on is still
+needed, this carry-on `1` must be prepended to the `digits` and recursion should stop.
+
+The inner function `add_one` over a position of `digits` implements exactly the outlined process moving from rightmost
+position until getting to a less, than `9` element value, or reaching the leftmost position, propagating the carry-on
+and mutating the elements of the original `digits`.
+
+The complete solution is given below:
+
+```
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        def add_one(pos: int) -> List[int]:
+            if digits[pos] < 9:
+                digits[pos] += 1
+                return digits
+            else:
+                digits[pos] = 0
+                return [1] + digits if not pos else add_one(pos - 1)
+
+        return add_one(len(digits) - 1)
+```
+
 ### Solution D: Genuine Divide-and-Conquer Approach
 
 * Apparently if the last element of `digits` is less, than `9`, the solution is just the input list having the last element incremented by one, that is,  `digits[:-1] + [digits[-1] + 1]`.
@@ -62,3 +91,5 @@ class Solution:
             digits[:-1] + [digits[-1] + 1] if digits[-1] < 9 else \
             self.plusOne(digits[:-1]) + [0]
 ```
+
+What about the complexity? Apparently, it is `O(n)` for all 4 variants.
