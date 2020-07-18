@@ -1,3 +1,4 @@
+module leetcode
 let findKthLargest k nums =
     nums |> Seq.sort |> Seq.rev |> Seq.item (k - 1)
 
